@@ -13,8 +13,8 @@ export default function Header() {
        mb-6 '/></div>
     <div className=' flex flex-col items-center mx-20 px-4 text-gray-800'> 
     <h1 className='flex items-centre gap-2  text-xl sm:text-3xl font-medium mb-2'>
-
-    hey  {userData ? userData.name :'Developer'}!
+    
+    Hey {userData  ? userData.name :'Developer'}!
     
     <img src={assets.hand_wave} alt="" className='w-8 aspect-square' /> 
     </h1>

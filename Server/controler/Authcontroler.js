@@ -166,7 +166,7 @@ catch(error){
 
 export const sendverifyOtp = async (req, res) => {
  try {
-  const {userId}= req.body;
+  const userId= req.userId;
 
   const user= await usermodel.findById(userId);
   if(user.isverified){
@@ -213,7 +213,7 @@ export const sendverifyOtp = async (req, res) => {
 
 export const verifyEmail =async (req,res) => {
   
-   const {userId,otp}= req.body;
+   const { userId,otp }= req.body ;
     if(!userId||!otp){
       return res.json ({success:false, message:'Missing Details'});
     }
@@ -223,7 +223,7 @@ export const verifyEmail =async (req,res) => {
     if(!user){
         return res.json ({success:false, message:'User not found '});
     }
-   if(user.verifyOtp ===' ' ||  user.verifyOtp !== otp){
+   if(user.verifyOtp ==='' ||  user.verifyOtp !== otp){ 
     return res.json({success:false, message:'Invalid OTP '});
    }
    if(user.verifyOtpExp< Date.now()){

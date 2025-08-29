@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 export const AppContext= createContext()
 
 export const AppContextProvider = (props)=>{
+   axios.defaults.withCredentials= true
     const backendurl =import.meta.env.VITE_BACKEND_URL
   
  const [isLoggedin, setisLoggedin] = useState(false)
@@ -26,7 +27,7 @@ export const AppContextProvider = (props)=>{
 
  const getAuthstate = async()=>{
     try {
-        const {data} = await axios.get( "http://localhost:5000/api/auth/isAuth" ) 
+        const {data} = await axios.get( 'http://localhost:5000/api/auth/isAuth',{withCredentials:true}) 
         if(data.success){
 
             setisLoggedin(true)
