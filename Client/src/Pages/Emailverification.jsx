@@ -38,7 +38,7 @@ export default function Emailverification() {
         inputRef.current[index].value=char
       }
     })
-  }
+  }   
 
   const submithandler = async(e) =>{
     try {

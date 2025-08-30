@@ -173,7 +173,8 @@ export const sendverifyOtp = async (req, res) => {
     return res.json ({success:false, message:"Account is Already verified"});
   }
 
-  const otp =String(Math.floor(100000+Math.random()*90000)); /// create 6 digit number use sting to use it as a string  
+  /// create 6 digit number use sting to use it as a string  
+  const otp =String(Math.floor(100000+Math.random()*90000)); 
    
   user.verifyOtp=otp;
   user.verifyOtpExp= Date.now()+ 24 * 60 * 60 * 1000;
@@ -213,7 +214,7 @@ export const sendverifyOtp = async (req, res) => {
 
 export const verifyEmail =async (req,res) => {
   
-   const { userId,otp }= req.body ;
+  const { userId,otp } = req.body;
     if(!userId||!otp){
       return res.json ({success:false, message:'Missing Details'});
     }
