@@ -19,7 +19,7 @@ export default function Navbar() {
     navigate('/Email verify')
     toast.success(data.message)
   }else{
-     toast.error(data.message) 
+     toast.error(data.message)  
     }
   } catch (error) {
     toast.error(error.message)
@@ -30,7 +30,7 @@ export default function Navbar() {
       axios.defaults.withCredentials= true;
       const {data} = await axios.post('http://localhost:5000/api/auth/logout')
       data.success && setisLoggedin(false)
-      data.succes && setuserData(false)
+      data.success && setuserData(false)
       navigate('/')
     } catch (error) {
      toast.error(error.message) 
@@ -63,8 +63,6 @@ export default function Navbar() {
           <img src={assets.arrow_icon} alt="" /> 
           </button>
         }
-
-      
     </div>   
   )
 }

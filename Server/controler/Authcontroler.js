@@ -213,8 +213,8 @@ export const sendverifyOtp = async (req, res) => {
 }
 
 export const verifyEmail =async (req,res) => {
-  
-  const { userId,otp } = req.body;
+  const userId = req.userId;
+  const { otp } = req.body;
     if(!userId||!otp){
       return res.json ({success:false, message:'Missing Details'});
     }
@@ -248,7 +248,7 @@ export const verifyEmail =async (req,res) => {
  
   try {
      const id= req.params.id;
-    UserModel.findById({ _id:id })
+    usermodel.findById({ _id:id })
     return res.json({success:true});
   } catch (error) {
     res.json({success:false, message:error.message});
@@ -315,7 +315,7 @@ export const verifyEmail =async (req,res) => {
     if(!user){
       return res.json({success:false,message:'User not found '});
     }
-    if(user.resetOtp === ""  || user.resetOtp !== otp ){
+    if(user.resetOtp === ''  || user.resetOtp !== otp ){
       return res.json({success:false, message:'Invalid Otp'});
     }
    

@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { AppContext } from '../Context/AppContext';
 import { getUSERdata } from '../../../Server/controler/Usercontroller';
+import {useEffect } from 'react';
 
 
 
@@ -12,7 +13,7 @@ import { getUSERdata } from '../../../Server/controler/Usercontroller';
 export default function Emailverification() {
   axios.defaults.withCredentials= true;
 
-  const {userData, getUSERdata,  setuserData,setisLoggedin}= useContext(AppContext)
+  const {userData, getUSERdata,  setuserData,setisLoggedin,isLoggedin}= useContext(AppContext)
   const navigate = useNavigate()
 
   const inputRef = React.useRef([]);
@@ -29,7 +30,7 @@ export default function Emailverification() {
     }
   }
 
-  const handlepaste = (e)=>{
+    const handlepaste = (e)=>{
     const paste = e.clipboardData.getData('text')
 
     const pasteArray = paste.split('');
@@ -52,7 +53,7 @@ export default function Emailverification() {
       const {data} = await axios.post('http://localhost:5000/api/auth/verify-account',{otp,userId})
       if(data.success ){
         toast.success(data.message)
-        getUSERdata()
+        getUSERdata();
         navigate('/')
       }else{
         toast.error(data.message)
@@ -61,6 +62,15 @@ export default function Emailverification() {
       toast.error(error.message)
     }
   }
+
+
+
+  useEffect(() => {
+    
+   isLoggedin && userData && userData.isverified && navigate('/')
+  
+  }, [ isLoggedin,userData])
+  
 
   return (
     <div className='flex items-center justify-center min-h-screen  sm:px-0 
